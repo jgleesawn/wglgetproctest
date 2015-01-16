@@ -3,7 +3,9 @@ require 'opengl-core'
 #require 'opengl-aux'
 #require 'snow-data'
 
-require_relative 'glhack'
+#require_relative 'glhack'
+
+Fiddle::dlopen('opengl32.dll').close
 
 Glfw.init
   Glfw::Window.window_hint(Glfw::CONTEXT_VERSION_MAJOR, 3)
@@ -15,7 +17,7 @@ Glfw.init
   window.make_context_current
 
   puts 'GLHACK'
-
+=begin
   puts "glGenVertexArrays ptr: #{GLHack::getFunc(:glGenVertexArrays).ptr.to_i}"
   puts "GPA glGenVertexArrays ptr: #{GLHack::get_wgl_command(:wglGetProcAddress).call(:glGenVertexArrays.to_s).to_i}"
   ptr = Fiddle::Pointer.malloc(1*Fiddle::SIZEOF_VOIDP)
@@ -29,7 +31,7 @@ Glfw.init
 
   hdc = GLHack::get_wgl_command(:wglGetCurrentDC).call()
   puts "hdc: #{hdc.to_i}"
-
+=end
   puts
   puts 'GL-CORE'
   puts
